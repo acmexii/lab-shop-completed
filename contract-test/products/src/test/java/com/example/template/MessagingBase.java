@@ -13,37 +13,27 @@ import org.springframework.util.MimeTypeUtils;
 
 import java.util.concurrent.TimeUnit;
 
-@RunWith(SpringRunner.class)    // junit4 와 springboot 를 연결해준다.
-// 통합테스트
+@RunWith(SpringRunner.class) 
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @AutoConfigureMessageVerifier
 public abstract class MessagingBase {
 
-    //remove::start[]
     @Autowired
+    ProductController productController;
+
+    @Autowired
+    // Message interface to verify Contracts between services.
     MessageVerifier messaging;
-    //remove::end[]
 
     @Before
     public void setup() {
-        // let's clear any remaining messages
-        // output == destination or channel name
-        //remove::start[]
+        // any remaining messages on the "eventTopic" channel are cleared
+        // makes that each test starts with a clean slate
         this.messaging.receive("eventTopic", 100, TimeUnit.MILLISECONDS);
-        //remove::end[]
     }
 
     public void productChanged() {
-
-        Product product = new Product();
-        product.setId(1L);
-        product.setName("TEST");
-        product.setPrice(10000);
-        product.setStock(10);
-        product.setImageUrl("/test.jpg");
-
-        ProductChanged productChanged = new ProductChanged(product);
-        String json = productChanged.toJson();
+        String json = this.productController.productTestMsg(null);
 
         this.messaging.send(MessageBuilder
                 .withPayload(json)

@@ -29,6 +29,10 @@ public class ProductController {
     Product productInsert(@RequestBody String data) {
         System.out.println(data);
         return this.productService.save(data);
-    }
-
+    }  
+    
+    @GetMapping("/product/testMsg")
+    String productTestMsg(@RequestBody String data) {
+        return this.productService.testMsg(data);
+    }   
 }

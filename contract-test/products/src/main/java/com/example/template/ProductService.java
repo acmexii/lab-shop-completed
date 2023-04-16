@@ -85,4 +85,22 @@ public class ProductService {
 
         return productRepository.save(product);
     }
+
+    public String testMsg(String data) {
+        String serializedJson = null;
+
+        if (data == null) {
+            Product product = new Product();
+            product.setId(1L);
+            product.setName("TEST");
+            product.setPrice(10000);
+            product.setStock(10);
+            product.setImageUrl("/test.jpg");
+
+            ProductChanged productChanged = new ProductChanged(product);
+            serializedJson = productChanged.toJson();
+        }
+
+        return serializedJson;
+    }
 }

@@ -16,7 +16,7 @@
 	<description>Demo project for Spring Boot</description>
 
 	<properties>
-		<java.version>1.8</java.version>
+		<java.version>11</java.version>
 		<spring-cloud.version>Hoxton.SR6</spring-cloud.version>
 		<spring-cloud-contract.version>2.1.2.RELEASE</spring-cloud-contract.version>
 	</properties>
@@ -65,47 +65,21 @@
 		</dependency>
 
 		<!-- test -->
+		<!-- Support testing your microservice without connecting to a messaging system. -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-stream-test-support</artifactId>
 			<scope>test</scope>
 		</dependency>
 
+		<!-- Auto generating Messaging Contract Client based on CDC. -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>
 			<version>${spring-cloud-contract.version}</version>
 			<scope>test</scope>
 		</dependency>
-
-		<!-- Add Stackdriver Trace Starter -->
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.cloud</groupId>-->
-<!--			<artifactId>spring-cloud-gcp-starter-trace</artifactId>-->
-<!--		</dependency>-->
-
 	</dependencies>
-
-<!--	<repositories>-->
-<!--		<repository>-->
-<!--			<id>eventstorming</id>-->
-<!--			<url>https://pkgs.dev.azure.com/eventstorming/_packaging/eventstorming/maven/v1</url>-->
-<!--			<releases>-->
-<!--				<enabled>true</enabled>-->
-<!--			</releases>-->
-<!--			<snapshots>-->
-<!--				<enabled>true</enabled>-->
-<!--			</snapshots>-->
-<!--		</repository>-->
-<!--	</repositories>-->
-<!--	<distributionManagement>-->
-<!--		<repository>-->
-<!--			<id>eventstorming</id>-->
-<!--			<url>https://pkgs.dev.azure.com/eventstorming/_packaging/eventstorming/maven/v1</url>-->
-<!--		</repository>-->
-<!--	</distributionManagement>-->
-
-
 	<dependencyManagement>
 		<dependencies>
 			<dependency>
@@ -135,7 +109,7 @@
 					<baseClassMappings>
 						<baseClassMapping>
 							<contractPackageRegex>.*com.*</contractPackageRegex>
-							<baseClassFQN>com.example.template.RestBase</baseClassFQN>
+							<baseClassFQN>com.example.template.MessagingBase</baseClassFQN>
 						</baseClassMapping>
 					</baseClassMappings>
 					<testMode>EXPLICIT</testMode>
