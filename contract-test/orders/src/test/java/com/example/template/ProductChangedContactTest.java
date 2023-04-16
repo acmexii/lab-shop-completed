@@ -18,9 +18,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment = SpringBootTest.WebEnvironment.NONE)
-@AutoConfigureMockMvc
 @AutoConfigureStubRunner(stubsMode = StubRunnerProperties.StubsMode.LOCAL, 
-                        ids = "com.example:boot-camp-products:+:stubs:8090")
+                        ids = "com.example:boot-camp-products:+:stubs")
 public class ProductChangedContactTest {
 
     @Autowired
