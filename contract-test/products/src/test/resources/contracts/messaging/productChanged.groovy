@@ -10,7 +10,8 @@ Contract.make {
     }
     outputMessage {
         sentTo 'eventTopic'
-        // Payload specification that a JSON message must have
+        // Consumer Expected Payload spec. that a JSON message must have, 
+        // If the Producer-side test is OK, then send the following msg to event-out channel.
         body(
                 eventType: "ProductChanged",
                 productId: 1,
@@ -19,7 +20,7 @@ Contract.make {
                 productStock: 10,
                 imageUrl: "tv.jpg"
         )
-        bodyMatchers {
+        bodyMatchers {  
             jsonPath('$.eventType', byRegex("ProductChanged"))
             jsonPath('$.productId', byRegex(nonEmpty()).asLong())
             jsonPath('$.productName', byRegex(nonEmpty()).asString())

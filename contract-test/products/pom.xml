@@ -72,7 +72,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Auto generating Messaging Contract Client based on CDC. -->
+		<!-- Auto generating test Client based on CDC. -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-contract-verifier</artifactId>

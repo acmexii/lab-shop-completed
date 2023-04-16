@@ -3,6 +3,8 @@ package com.example.template;
 import com.example.template.config.kafka.KafkaProcessor;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import org.apache.tomcat.jni.Proc;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.messaging.handler.annotation.Headers;
@@ -98,6 +100,8 @@ public class ProductService {
             product.setImageUrl("/test.jpg");
 
             ProductChanged productChanged = new ProductChanged(product);
+            // productChanged.setEventType("ProductModified");
+            
             serializedJson = productChanged.toJson();
         }
 
